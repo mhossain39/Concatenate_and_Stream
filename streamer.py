@@ -92,11 +92,7 @@ class Streamer:
 		self.pipeline.set_state(Gst.State.PLAYING)	
 		self.mainloop.run()
 
-	def pts_probe_cb(self, pad, info, data):
-		buff = info.get_buffer()
-		# print("Compositor pushed buffer.", buff.pts)
-		self.last_pts = buff.pts
-		return Gst.PadProbeReturn.PASS
+
 
 	def demuxer_callback(self, demuxer, pad):
 		#print (pad.get_property("template").name_template)
@@ -279,10 +275,6 @@ class Streamer:
 
 
 			
-#if __name__ == "__main__":
-#	streamer=Streamer(['http://www.improsys.com/real.mp4','http://www.improsys.com/real.mp4','http://www.improsys.com/real.mp4'], ['rtmp://live-fra.twitch.tv/app/#live_406476462_iHwFE7IR8RnB6dhT5GJd52ET3dZ6Yj','rtmp://live-fra.twitch.tv/app/live_265843825_YDd60uC7RaDxYJEfJgmed6eqYg5Kve'])
-#	streamer.run()	
-#	print ("MainLoop done")
 
 
 
